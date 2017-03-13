@@ -1,0 +1,18 @@
+﻿  main.cpp
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\vec3.h(60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\vec3.h(140): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\hitable_list.h(20): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\camera.h(15): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\camera.h(26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(36): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(39): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(41): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(42): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(44): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(84): warning C4305: 'initializing': truncation from 'double' to 'float'
+  CSC305Assignment1.vcxproj -> E:\Devin\Documents\Visual Studio 2015\Projects\CSC305Assignment1\Debug\CSC305Assignment1.exe
+  CSC305Assignment1.vcxproj -> E:\Devin\Documents\Visual Studio 2015\Projects\CSC305Assignment1\Debug\CSC305Assignment1.pdb (Partial PDB)
