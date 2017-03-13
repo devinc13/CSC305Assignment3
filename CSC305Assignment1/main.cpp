@@ -1,3 +1,6 @@
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#define _CRT_SECURE_NO_DEPRECATE
+
 #include <iostream>
 #include <random>
 #include "sphere.h"
@@ -8,6 +11,14 @@
 #include "material.h"
 #include "rectangle.h"
 #include "flip_normals.h"
+#include "stb_image_write.h"
+
+struct rgba8 {
+	unsigned char r, g, b, a;
+	rgba8() { }
+	rgba8(unsigned char rr, unsigned char gg, unsigned char bb, unsigned char aa)
+		: r(rr), g(gg), b(bb), a(aa) { }
+};
 
 // Get the color of the passed in ray
 vec3 color(const ray& r, hitable *world, int depth) {
@@ -30,7 +41,13 @@ int main() {
 	int nx = 800;
 	int ny = 800;
 	int ns = 20;
-	std::cout << "P3\n" << nx << " " << ny << "\n255\n";
+
+	rgba8* pixels = new rgba8[nx * ny];
+
+	// clear to black
+	memset(pixels, 0, nx * ny * sizeof(*pixels));
+
+	//std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
 	material *light = new diffuse_light(new constant_texture(vec3(1, 1, 1)));
 	material *checkered = new lambertian(new checker_texture(new constant_texture(vec3(0.2, 0.2, 0.4)), new constant_texture(vec3(0.9, 0.9, 0.9))));
@@ -108,7 +125,15 @@ int main() {
 			int ir = int(255.99*col[0]);
 			int ig = int(255.99*col[1]);
 			int ib = int(255.99*col[2]);
-			std::cout << ir << " " << ig << " " << ib << "\n";
+
+			pixels[(ny - j - 1) * nx + i] = rgba8(ir, ig, ib, 255);
+			//std::cout << ir << " " << ig << " " << ib << "\n";
 		}
 	}
+
+	// write image to file
+	stbi_write_png("raytrace.png", nx, ny, 4, pixels, nx * 4);
+	system("raytrace.png");
+
+	delete[] pixels;
  }

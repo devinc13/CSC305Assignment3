@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,6 +116,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="flip_normals.h" />
+    <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="material.h" />
