@@ -38,9 +38,9 @@ vec3 color(const ray& r, hitable *world, int depth) {
 }
 
 int main() {
-	int nx = 800;
-	int ny = 800;
-	int ns = 20;
+	int nx = 600;
+	int ny = 600;
+	int ns = 200;
 
 	rgba8* pixels = new rgba8[nx * ny];
 
@@ -51,7 +51,7 @@ int main() {
 
 	material *light = new diffuse_light(new constant_texture(vec3(1, 1, 1)));
 	material *checkered = new lambertian(new checker_texture(new constant_texture(vec3(0.2, 0.2, 0.4)), new constant_texture(vec3(0.9, 0.9, 0.9))));
-
+	
 	hitable *list[7];
 	float R = cos(M_PI / 4);
 	list[0] = new plane(vec3(0, 1, 0), vec3(0, 0, 0), checkered);
@@ -59,8 +59,10 @@ int main() {
 	list[2] = new sphere(vec3(0, 1, 0), 1, new metal(vec3(0.8, 0.6, 0.2), 0.0));
 	list[3] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
 	list[4] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
-	list[5] = new sphere(vec3(-2, 8, 0), 3, light);
-	hitable *world = new hitable_list(list, 6);
+	//list[5] = new sphere(vec3(-1, 0.5, 4), 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
+	list[5] = new moving_sphere(vec3(0, 0.4, 4), vec3(0, 1.1, 4), 0.0, 1.0, 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
+	list[6] = new sphere(vec3(-2, 8, 5), 3, light);
+	hitable *world = new hitable_list(list, 7);
 
 	//hitable **list = new hitable*[13];
 	//int i = 0;
@@ -101,7 +103,7 @@ int main() {
 	float aperture = 0.1;
 	float vfov = 35.0;
 
-	camera camera(vfov, float(nx) / float(ny), lookfrom, lookat, vec3(0, 1, 0), aperture, dist_to_focus);
+	camera camera(vfov, float(nx) / float(ny), lookfrom, lookat, vec3(0, 1, 0), aperture, dist_to_focus, 0.0, 1.0);
 
 
 	std::random_device rd;

@@ -4,6 +4,7 @@
 
 #include "ray.h"
 #include <math.h>
+#include <random>
 
 std::random_device rd;
 std::mt19937 gen(rd());
@@ -21,7 +22,9 @@ vec3 random_in_unit_disk() {
 
 class camera {
 public:
-	camera(float vertical_fov, float aspect, vec3 lookfrom, vec3 lookat, vec3 vup, float aperature, float focus_dist) {
+	camera(float vertical_fov, float aspect, vec3 lookfrom, vec3 lookat, vec3 vup, float aperature, float focus_dist, float t0, float t1) {
+		time0 = t0;
+		time1 = t1;
 		lens_radius = aperature / 2;
 		float theta = vertical_fov * M_PI / 180;
 		float half_height = tan(theta / 2);
@@ -40,7 +43,13 @@ public:
 	ray get_ray(float s, float t) {
 		vec3 rd = lens_radius * random_in_unit_disk();
 		vec3 offset = u * rd.x() + v * rd.y();
-		return ray(origin + offset, lower_left_corner + s * horizontal + t * vertical - origin - offset);
+
+		std::random_device rand;
+		std::mt19937 gen(rand());
+		std::uniform_real_distribution<> random(0, 1);
+
+		float time = time0 + random(gen) * (time1 - time0);
+		return ray(origin + offset, lower_left_corner + s * horizontal + t * vertical - origin - offset, time);
 	}
 
 	vec3 origin;
@@ -49,6 +58,7 @@ public:
 	vec3 vertical;
 	vec3 u, v, w;
 	float lens_radius;
+	float time0, time1;
 };
 
 #endif
