@@ -22,6 +22,7 @@
     <ProjectGuid>{882CA07D-B769-4979-84B9-BC6A5AFB3952}</ProjectGuid>
     <RootNamespace>CSC305Assignment1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>CSC305Assignment3</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -114,8 +115,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bbh_node.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="flip_normals.h" />
+    <ClInclude Include="aabb.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="texture.h" />

@@ -12,6 +12,7 @@
 #include "rectangle.h"
 #include "flip_normals.h"
 #include "stb_image_write.h"
+#include "bbh_node.h"
 
 struct rgba8 {
 	unsigned char r, g, b, a;
@@ -40,37 +41,45 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
 	int nx = 600;
 	int ny = 600;
-	int ns = 200;
+	int ns = 20;
 
 	rgba8* pixels = new rgba8[nx * ny];
 
 	// clear to black
 	memset(pixels, 0, nx * ny * sizeof(*pixels));
 
-	//std::cout << "P3\n" << nx << " " << ny << "\n255\n";
-
 	material *light = new diffuse_light(new constant_texture(vec3(1, 1, 1)));
 	material *checkered = new lambertian(new checker_texture(new constant_texture(vec3(0.2, 0.2, 0.4)), new constant_texture(vec3(0.9, 0.9, 0.9))));
+	material *red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
+	material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
+	material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
+
+
 	
-	hitable *list[7];
-	float R = cos(M_PI / 4);
-	list[0] = new plane(vec3(0, 1, 0), vec3(0, 0, 0), checkered);
-	list[1] = new sphere(vec3(-2, 1, -1), 1, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
-	list[2] = new sphere(vec3(0, 1, 0), 1, new metal(vec3(0.8, 0.6, 0.2), 0.0));
-	list[3] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
-	list[4] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
-	//list[5] = new sphere(vec3(-1, 0.5, 4), 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
-	list[5] = new moving_sphere(vec3(0, 0.4, 4), vec3(0, 1.1, 4), 0.0, 1.0, 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
-	list[6] = new sphere(vec3(-2, 8, 5), 3, light);
-	hitable *world = new hitable_list(list, 7);
+	int i = 0;
+	hitable **boxlist = new hitable*[20];
+	boxlist[i++] = new sphere(vec3(2, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	boxlist[i++] = new sphere(vec3(0, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	boxlist[i++] = new sphere(vec3(-2, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	boxlist[i++] = new sphere(vec3(-2, 1, -1), 1, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	boxlist[i++] = new sphere(vec3(0, 1, 0), 1, new metal(vec3(0.8, 0.6, 0.2), 0.0));
+	boxlist[i++] = new moving_sphere(vec3(0, 0.4, 4), vec3(0, 1.1, 4), 0.0, 1.0, 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
+	boxlist[i++] = new sphere(vec3(-2, 8, 5), 3, light);
+	boxlist[i++] = new xy_rectangle(-5.5, 2.5, 0, 3, -5, red);
+	boxlist[i++] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
+	boxlist[i++] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
+
+
+	int y = 0;
+	hitable *list[10];
+	list[y++] = new plane(vec3(0, 1, 0), vec3(0, 0, 0), checkered);
+	list[y++] = new bbh_node(boxlist, i, 0, 1);
+
+	hitable *world = new hitable_list(list, y);
 
 	//hitable **list = new hitable*[13];
 	//int i = 0;
-	//material *red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
-	//material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
-	//material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
-	//material *light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
-	//material *checkered = new lambertian(new checker_texture(new constant_texture(vec3(0.2, 0.2, 0.4)), new constant_texture(vec3(0.9, 0.9, 0.9))));
+
 
 	//list[i++] = new flip_normals(new yz_rectangle(0, 555, 0, 555, 555, green));
 	//list[i++] = new yz_rectangle(0, 555, 0, 555, 0, red);

@@ -8,6 +8,11 @@ public:
 	plane() {}
 	plane(vec3 n, vec3 p, material *m) : normal(n), point(p), mat_ptr(m) {};
 	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+
+	bool plane::bounding_box(float t0, float t1, aabb& box) const {
+		return false;
+	}
+
 	vec3 normal;
 	vec3 point;
 	material *mat_ptr;

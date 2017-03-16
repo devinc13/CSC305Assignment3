@@ -9,6 +9,10 @@ public:
 	xy_rectangle(float _x0, float _x1, float _y0, float _y1, float _k, material *mat) : x0(_x0), x1(_x1), y0(_y0), y1(_y1), k(_k), mp(mat) {};
 
 	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+	bool bounding_box(float t0, float t1, aabb& box) const {
+		box = aabb(vec3(x0, y0, k - 0.0001), vec3(x1, y1, k + 0.0001));
+		return true;
+	}
 
 	float x0, x1, y0, y1, k;
 	material *mp;
@@ -44,6 +48,10 @@ public:
 	xz_rectangle(float _x0, float _x1, float _z0, float _z1, float _k, material *mat) : x0(_x0), x1(_x1), z0(_z0), z1(_z1), k(_k), mp(mat) {};
 
 	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+	bool bounding_box(float t0, float t1, aabb& box) const {
+		box = aabb(vec3(x0, z0, k - 0.0001), vec3(x1, z1, k + 0.0001));
+		return true;
+	}
 
 	float x0, x1, z0, z1, k;
 	material *mp;
@@ -79,6 +87,10 @@ public:
 	yz_rectangle(float _y0, float _y1, float _z0, float _z1, float _k, material *mat) : y0(_y0), y1(_y1), z0(_z0), z1(_z1), k(_k), mp(mat) {};
 
 	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+	bool bounding_box(float t0, float t1, aabb& box) const {
+		box = aabb(vec3(y0, z0, k - 0.0001), vec3(y1, z1, k + 0.0001));
+		return true;
+	}
 
 	float y0, y1, z0, z1, k;
 	material *mp;
