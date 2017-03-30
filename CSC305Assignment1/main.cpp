@@ -41,7 +41,7 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
 	int nx = 600;
 	int ny = 600;
-	int ns = 20;
+	int ns = 200;
 
 	rgba8* pixels = new rgba8[nx * ny];
 
@@ -53,14 +53,14 @@ int main() {
 	material *red = new lambertian(new constant_texture(vec3(0.65, 0.05, 0.05)));
 	material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
 	material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
-
+	material *perlin = new lambertian(new noise_texture(4));
 
 	
 	int i = 0;
 	hitable **boxlist = new hitable*[20];
-	boxlist[i++] = new sphere(vec3(2, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
-	boxlist[i++] = new sphere(vec3(0, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
-	boxlist[i++] = new sphere(vec3(-2, 3, 0), 0.2, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
+	boxlist[i++] = new sphere(vec3(2, 3, 0), 0.5, perlin);
+	boxlist[i++] = new sphere(vec3(0, 3, 0), 0.5, perlin);
+	boxlist[i++] = new sphere(vec3(-2, 3, 0), 0.5, perlin);
 	boxlist[i++] = new sphere(vec3(-2, 1, -1), 1, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
 	boxlist[i++] = new sphere(vec3(0, 1, 0), 1, new metal(vec3(0.8, 0.6, 0.2), 0.0));
 	boxlist[i++] = new moving_sphere(vec3(0, 0.4, 4), vec3(0, 1.1, 4), 0.0, 1.0, 0.5, new lambertian(new constant_texture(vec3(0.7, 0.2, 0.3))));
@@ -69,10 +69,9 @@ int main() {
 	boxlist[i++] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
 
-
 	int y = 0;
 	hitable *list[10];
-	list[y++] = new plane(vec3(0, 1, 0), vec3(0, 0, 0), checkered);
+	list[y++] = new plane(vec3(0, 1, 0), vec3(0, 0, 0), perlin);
 	list[y++] = new bbh_node(boxlist, i, 0, 1);
 
 	hitable *world = new hitable_list(list, y);

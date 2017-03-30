@@ -119,6 +119,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="flip_normals.h" />
     <ClInclude Include="aabb.h" />
+    <ClInclude Include="perlin.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="texture.h" />

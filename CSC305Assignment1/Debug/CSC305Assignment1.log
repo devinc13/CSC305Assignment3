@@ -6,6 +6,10 @@ e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignmen
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\camera.h(16): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\camera.h(29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\camera.h(51): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\perlin.h(33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\perlin.h(34): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\perlin.h(35): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\perlin.h(71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\material.h(97): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -17,13 +21,10 @@ e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignmen
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(61): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(62): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(63): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(64): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(65): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(66): warning C4305: 'argument': truncation from 'double' to 'float'
 e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(70): warning C4305: 'argument': truncation from 'double' to 'float'
-e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(112): warning C4305: 'initializing': truncation from 'double' to 'float'
+e:\devin\documents\visual studio 2015\projects\csc305assignment1\csc305assignment1\main.cpp(111): warning C4305: 'initializing': truncation from 'double' to 'float'
   CSC305Assignment1.vcxproj -> E:\Devin\Documents\Visual Studio 2015\Projects\CSC305Assignment1\Debug\CSC305Assignment3.exe
   CSC305Assignment1.vcxproj -> E:\Devin\Documents\Visual Studio 2015\Projects\CSC305Assignment1\Debug\CSC305Assignment3.pdb (Partial PDB)
