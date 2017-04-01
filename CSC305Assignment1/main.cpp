@@ -1,5 +1,6 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #define _CRT_SECURE_NO_DEPRECATE
+#define STB_IMAGE_IMPLEMENTATION
 
 #include <iostream>
 #include <random>
@@ -13,6 +14,7 @@
 #include "flip_normals.h"
 #include "stb_image_write.h"
 #include "bbh_node.h"
+#include "stb_image.h"
 
 struct rgba8 {
 	unsigned char r, g, b, a;
@@ -41,7 +43,7 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
 	int nx = 600;
 	int ny = 600;
-	int ns = 200;
+	int ns = 100;
 
 	rgba8* pixels = new rgba8[nx * ny];
 
@@ -54,12 +56,15 @@ int main() {
 	material *white = new lambertian(new constant_texture(vec3(0.73, 0.73, 0.73)));
 	material *green = new lambertian(new constant_texture(vec3(0.12, 0.45, 0.15)));
 	material *perlin = new lambertian(new noise_texture(4));
+	int imagex;
+	int imagey;
+	int imagen;
+	unsigned char *image_texture_data = stbi_load("smallEarthMap.jpg", &imagex, &imagey, &imagen, 0);
+	material *earth = new lambertian(new image_texture(image_texture_data, imagex, imagey));
 
-	
 	int i = 0;
 	hitable **boxlist = new hitable*[20];
 	boxlist[i++] = new sphere(vec3(2, 3, 0), 0.5, perlin);
-	boxlist[i++] = new sphere(vec3(0, 3, 0), 0.5, perlin);
 	boxlist[i++] = new sphere(vec3(-2, 3, 0), 0.5, perlin);
 	boxlist[i++] = new sphere(vec3(-2, 1, -1), 1, new lambertian(new constant_texture(vec3(0.1, 0.2, 0.5))));
 	boxlist[i++] = new sphere(vec3(0, 1, 0), 1, new metal(vec3(0.8, 0.6, 0.2), 0.0));
@@ -68,6 +73,17 @@ int main() {
 	boxlist[i++] = new xy_rectangle(-5.5, 2.5, 0, 3, -5, red);
 	boxlist[i++] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
+	boxlist[i++] = new sphere(vec3(0, 4.5, 0), 1.5, earth);
+
+
+
+	//boxlist[i++] = new sphere(vec3(500, 200, 400), 100, earth);
+	//material *light2 = new diffuse_light(new constant_texture(vec3(7, 7, 7)));
+	//boxlist[i++] = new xz_rectangle(123, 423, 147, 412, 554, light2);
+
+
+
+	
 
 	int y = 0;
 	hitable *list[10];
@@ -106,10 +122,11 @@ int main() {
 	//camera camera(vfov, float(nx) / float(ny), lookfrom, lookat, vec3(0,1,0), aperture, dist_to_focus);
 
 	vec3 lookfrom(2, 2, 10);
-	vec3 lookat(0, 1, 0);
+	vec3 lookat(0, 2.5, 0);
 	float dist_to_focus = 10.0;
 	float aperture = 0.1;
-	float vfov = 35.0;
+	float vfov = 40.0;
+
 
 	camera camera(vfov, float(nx) / float(ny), lookfrom, lookat, vec3(0, 1, 0), aperture, dist_to_focus, 0.0, 1.0);
 
