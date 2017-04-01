@@ -118,6 +118,7 @@
     <ClInclude Include="bbh_node.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="constant_medium.h" />
     <ClInclude Include="flip_normals.h" />
     <ClInclude Include="aabb.h" />
     <ClInclude Include="perlin.h" />

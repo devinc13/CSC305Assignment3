@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <iostream>
 
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_real_distribution<> random(0, 1);
+
 class vec3{
 public:
 	vec3() {}

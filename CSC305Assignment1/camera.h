@@ -6,10 +6,6 @@
 #include <math.h>
 #include <random>
 
-std::random_device rd;
-std::mt19937 gen(rd());
-std::uniform_real_distribution<> random(0, 1);
-
 vec3 random_in_unit_disk() {
 	vec3 p;
 	do {

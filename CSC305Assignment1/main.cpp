@@ -9,6 +9,7 @@
 #include "box.h"
 #include "translate.h"
 #include "rotate.h"
+#include "constant_medium.h"
 #include "hitable_list.h"
 #include "float.h"
 #include "camera.h"
@@ -46,7 +47,7 @@ vec3 color(const ray& r, hitable *world, int depth) {
 int main() {
 	int nx = 600;
 	int ny = 600;
-	int ns = 100;
+	int ns = 200;
 
 	rgba8* pixels = new rgba8[nx * ny];
 
@@ -65,6 +66,9 @@ int main() {
 	unsigned char *image_texture_data = stbi_load("smallEarthMap.jpg", &imagex, &imagey, &imagen, 0);
 	material *earth = new lambertian(new image_texture(image_texture_data, imagex, imagey));
 
+	hitable *smokeBox = new translate(new box(vec3(0, 0, 0), vec3(1, 1, 1), white), vec3(-2.7, 2, 1));
+	hitable *smokeSphere = new sphere(vec3(2.8, 2.5, 1), 0.5, white);
+
 	int i = 0;
 	hitable **boxlist = new hitable*[20];
 	boxlist[i++] = new sphere(vec3(2, 3, 0), 0.5, perlin);
@@ -77,11 +81,10 @@ int main() {
 	boxlist[i++] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(0, 4.5, 0), 1.5, earth);
-	boxlist[i++] = new sphere(vec3(0, 4.5, 0), 1.5, earth);
 	boxlist[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(1, 1, 1), white), 20), vec3(2, 4, -1));
 	boxlist[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(1, 1, 1), white), -45), vec3(-3, 4, -1));
-	
-
+	boxlist[i++] = new constant_medium(smokeBox, 0.3, new constant_texture(vec3(0.73, 0.73, 0.73)));
+	boxlist[i++] = new constant_medium(smokeSphere, 0.3, new constant_texture(vec3(0.73, 0.73, 0.73)));
 
 	int y = 0;
 	hitable *list[10];
