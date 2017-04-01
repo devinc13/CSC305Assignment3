@@ -6,6 +6,9 @@
 #include <random>
 #include "sphere.h"
 #include "plane.h"
+#include "box.h"
+#include "translate.h"
+#include "rotate.h"
 #include "hitable_list.h"
 #include "float.h"
 #include "camera.h"
@@ -74,16 +77,11 @@ int main() {
 	boxlist[i++] = new sphere(vec3(2, 1, 1), 1, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(2, 1, 1), -0.95, new dielectric(1.5));
 	boxlist[i++] = new sphere(vec3(0, 4.5, 0), 1.5, earth);
-
-
-
-	//boxlist[i++] = new sphere(vec3(500, 200, 400), 100, earth);
-	//material *light2 = new diffuse_light(new constant_texture(vec3(7, 7, 7)));
-	//boxlist[i++] = new xz_rectangle(123, 423, 147, 412, 554, light2);
-
-
-
+	boxlist[i++] = new sphere(vec3(0, 4.5, 0), 1.5, earth);
+	boxlist[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(1, 1, 1), white), 20), vec3(2, 4, -1));
+	boxlist[i++] = new translate(new rotate_y(new box(vec3(0, 0, 0), vec3(1, 1, 1), white), -45), vec3(-3, 4, -1));
 	
+
 
 	int y = 0;
 	hitable *list[10];

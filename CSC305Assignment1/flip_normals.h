@@ -15,6 +15,10 @@ public:
 		}
 	}
 
+	virtual bool bounding_box(float t0, float t1, aabb& box) const {
+		return ptr->bounding_box(t0, t1, box);
+	}
+
 	hitable *ptr;
 };
 

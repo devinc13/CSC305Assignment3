@@ -116,10 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bbh_node.h" />
+    <ClInclude Include="box.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="flip_normals.h" />
     <ClInclude Include="aabb.h" />
     <ClInclude Include="perlin.h" />
+    <ClInclude Include="rotate.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="stb_image_write.h" />
     <ClInclude Include="rectangle.h" />
@@ -130,6 +132,7 @@
     <ClInclude Include="sphere.h" />
     <ClInclude Include="hitable.h" />
     <ClInclude Include="ray.h" />
+    <ClInclude Include="translate.h" />
     <ClInclude Include="vec3.h" />
   </ItemGroup>
   <ItemGroup>
